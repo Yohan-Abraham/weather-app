@@ -1,31 +1,21 @@
-import './style.css';
+class Weather {
+  constructor(location, currentCondition, feel) {
+    this.location = location;
+    this.currentCondition = currentCondition;
+    this.feel = feel;
+  }
 
-//returns raw data of location
-async function getData(location) {
-  try {
-    const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=A72ZE4RZ682RFQY6HMMP76233&contentType=json`,
-    );
-    const data = await response.json();
-    return data;
-  } catch {
-    console.log('error');
+  getLocation() {
+    return this.location;
+  }
+
+  getCurrentCondition() {
+    return this.currentCondition;
+  }
+
+  getFeel() {
+    return this.feel;
   }
 }
 
-//processes data for desired location and returns important data
-async function processData(location) {
-  //get raw data of location
-  const data = await getData(location);
-  console.log(data);
-
-  const myLocation = data.address;
-  const currentCondition = data.currentConditions.conditions;
-  const feel = data.currentConditions.feelslike;
-
-  console.log(myLocation);
-  console.log(currentCondition);
-  console.log(feel);
-}
-
-export { processData };
+export { Weather };
