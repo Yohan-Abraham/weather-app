@@ -1,4 +1,5 @@
-import { processData } from './weather';
+import rain from './images/rain.jpg';
+import overcast from './images/overcast.jpg';
 
 function createNavBar() {
   //create nav container
@@ -46,20 +47,16 @@ function createNavBar() {
   navContainer.appendChild(tempContainer);
 }
 
-function setupEventListeners() {
-  const getLocation = document.querySelector('#getLocation');
-
-  getLocation.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      processData(getLocation.value);
-      getLocation.value = '';
-    }
-  });
+function changeBackground(currentCondition) {
+  const body = document.querySelector('body');
+  if (currentCondition.toLowerCase() == 'partially cloudy') {
+    const body = document.querySelector('body');
+    body.style.backgroundImage = `url(${overcast})`;
+  }
 }
 
 function initializeDom() {
   createNavBar();
-  setupEventListeners();
 }
 
-export { initializeDom };
+export { initializeDom, changeBackground };
