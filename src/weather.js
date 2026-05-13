@@ -1,14 +1,31 @@
 import './style.css';
 
-async function getData() {
+//returns raw data of location
+async function getData(location) {
   try {
-    const data = await fetch(
-      'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Vancouver?unitGroup=metric&key=A72ZE4RZ682RFQY6HMMP76233&contentType=json',
+    const response = await fetch(
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=A72ZE4RZ682RFQY6HMMP76233&contentType=json`,
     );
-    console.log(data);
+    const data = await response.json();
+    return data;
   } catch {
     console.log('error');
   }
 }
 
-getData();
+//processes data for desired location and returns important data
+async function processData(location) {
+  //get raw data of location
+  const data = await getData(location);
+  console.log(data);
+
+  const myLocation = data.address;
+  const currentCondition = data.currentConditions.conditions;
+  const feel = data.currentConditions.feelslike;
+
+  console.log(myLocation);
+  console.log(currentCondition);
+  console.log(feel);
+}
+
+export { processData };
