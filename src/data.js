@@ -22,7 +22,9 @@ async function processData(location) {
     data.address,
     data.currentConditions.conditions,
     data.currentConditions.feelslike,
+    data.description,
   );
+  console.log(data);
   return weather;
 }
 
