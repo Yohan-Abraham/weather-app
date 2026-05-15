@@ -5,5 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body></body>
+  <body>
+    <nav>
+      <div id="appName">Weather App</div>
+      <div class="currentLocation"></div>
+      <div id="searchBox">
+        <input
+          type="text"
+          id="getLocation"
+          name="getLocation"
+          placeholder="Enter Location"
+        />
+      </div>
+      <div id="unit">
+        <button class="unitBtn">˚C</button>
+        <span>|</span>
+        <button class="unitBtn">˚F</button>
+      </div>
+    </nav>
+
+    <div id="weatherContainer">
+      <div id="currentWeather">
+        <div id="currentHeader">
+          <p>Current Weather</p>
+          <p id="currentDay">Friday</p>
+        </div>
+        <div id="currentTemp">13<span>˚C</span></div>
+        <div id="feelContainer">
+          <span id="icon"></span>
+          <span
+            ><p id="currentFeel">Feels like</p>
+            <p id="currentDescription">Coludy</p></span
+          >
+        </div>
+      </div>
+
+      <div id="additionalInfo">
+        <div id="rain"></div>
+        <div id="humidity"></div>
+        <div id="wind"></div>
+        <div id="uv"></div>
+        <div id="visibility"></div>
+        <div id="windDirection"></div>
+      </div>
+
+      <div id="sunInfoContainer"></div>
+    </div>
+  </body>
 </html>
