@@ -48,23 +48,55 @@ function createNavBar() {
   navContainer.appendChild(tempContainer);
 }
 
-function wheatherContainer() {
+function weatherContainer() {
   const body = document.querySelector('body');
-  const wheatherContainer = document.createElement('div');
-  wheatherContainer.id = 'wheatherContainer';
-  body.appendChild(wheatherContainer);
+  const weatherContainer = document.createElement('div');
+  weatherContainer.id = 'weatherContainer';
+  body.appendChild(weatherContainer);
 
+  //diaplays current feel and weather condition
   const currentData = document.createElement('div');
   currentData.id = 'currentData';
-  wheatherContainer.appendChild(currentData);
+  weatherContainer.appendChild(currentData);
+  const weatherIcon = document.createElement('div');
+  weatherIcon.id = 'icon';
+  currentData.appendChild(weatherIcon);
+  const currentDate = document.createElement('div');
+  currentDate.id = 'currentDate';
+  currentData.appendChild(currentDate);
+  const currentTemp = document.createElement('div');
+  currentTemp.id = 'currentTemp';
+  currentData.appendChild(currentTemp);
+  const currentFeel = document.createElement('div');
+  currentFeel.id = 'currentFeel';
+  currentData.appendChild(currentFeel);
+  const weatherDescription = document.createElement('div');
+  weatherDescription.id = 'weatherDescription';
+  currentData.appendChild(weatherDescription);
+  const sunState = document.createElement('div');
+  sunState.id = 'sunState';
+  currentData.appendChild(sunState);
 
+  //contains additional data about weather
   const moreDetails = document.createElement('div');
   moreDetails.id = 'moreDetails';
-  wheatherContainer.appendChild(moreDetails);
+  weatherContainer.appendChild(moreDetails);
+}
+
+function setDate() {}
+
+function setDescription(weather) {
+  const description = document.querySelector('#weatherDescription');
+  description.textContent = `${weather}`;
+}
+
+function setIcon() {
+  const icon = document.querySelector('#icon');
+  icon.style.backgroundImage = `url(${sunny})`;
 }
 
 //changed app background based on wheather condition
-function changeBackground(currentCondition) {
+function setBackground(currentCondition) {
   const body = document.querySelector('body');
   if (
     currentCondition.toLowerCase() == 'partially cloudy' ||
@@ -77,7 +109,7 @@ function changeBackground(currentCondition) {
 
 function initializeDom() {
   createNavBar();
-  wheatherContainer();
+  weatherContainer();
 }
 
-export { initializeDom, changeBackground };
+export { initializeDom, setBackground, setIcon, setDescription };
