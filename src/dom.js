@@ -1,7 +1,3 @@
-import rain from './images/rain.jpg';
-import overcast from './images/overcast.jpg';
-import sunny from './images/sunny.jpg';
-
 function createNavBar() {
   return `<nav>
       <div id="appName">Weather App</div>
