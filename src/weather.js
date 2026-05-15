@@ -1,7 +1,8 @@
 class Weather {
-  constructor(location, currentCondition, feel, description) {
+  constructor(location, currentCondition, currentDate, feel, description) {
     this.location = location;
     this.currentCondition = currentCondition;
+    this.currentDate = currentDate;
     this.feel = feel;
     this.description = description;
   }
@@ -12,6 +13,10 @@ class Weather {
 
   getCurrentCondition() {
     return this.currentCondition;
+  }
+
+  getDate() {
+    return this.currentDate;
   }
 
   getFeel() {
