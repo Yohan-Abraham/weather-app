@@ -1,4 +1,11 @@
-import { initializeDom, setBackground, setIcon, setDescription } from './dom';
+import {
+  initializeDom,
+  setBackground,
+  setIcon,
+  setDescription,
+  setDate,
+  setFeel,
+} from './dom';
 import { processData } from './data';
 import { Weather } from './weather';
 
@@ -14,6 +21,8 @@ function setupEventListeners() {
       setBackground(data.getCurrentCondition());
       setIcon();
       setDescription(data.getDescription());
+      setDate(data.getDate());
+      setFeel(data.getFeel());
       console.log(data);
     }
   });
