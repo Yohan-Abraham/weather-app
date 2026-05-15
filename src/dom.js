@@ -1,5 +1,6 @@
 import rain from './images/rain.jpg';
 import overcast from './images/overcast.jpg';
+import sunny from './images/sunny.jpg';
 
 function createNavBar() {
   //create nav container
@@ -47,9 +48,28 @@ function createNavBar() {
   navContainer.appendChild(tempContainer);
 }
 
+function wheatherContainer() {
+  const body = document.querySelector('body');
+  const wheatherContainer = document.createElement('div');
+  wheatherContainer.id = 'wheatherContainer';
+  body.appendChild(wheatherContainer);
+
+  const currentData = document.createElement('div');
+  currentData.id = 'currentData';
+  wheatherContainer.appendChild(currentData);
+
+  const moreDetails = document.createElement('div');
+  moreDetails.id = 'moreDetails';
+  wheatherContainer.appendChild(moreDetails);
+}
+
+//changed app background based on wheather condition
 function changeBackground(currentCondition) {
   const body = document.querySelector('body');
-  if (currentCondition.toLowerCase() == 'partially cloudy') {
+  if (
+    currentCondition.toLowerCase() == 'partially cloudy' ||
+    currentCondition.toLowerCase() == 'overcast'
+  ) {
     const body = document.querySelector('body');
     body.style.backgroundImage = `url(${overcast})`;
   }
@@ -57,6 +77,7 @@ function changeBackground(currentCondition) {
 
 function initializeDom() {
   createNavBar();
+  wheatherContainer();
 }
 
 export { initializeDom, changeBackground };
