@@ -1,30 +1,84 @@
 class Weather {
-  constructor(location, currentCondition, currentDate, feel, description) {
+  constructor(
+    location,
+    date,
+    temp,
+    feel,
+    conditions,
+    rainProbability,
+    humidity,
+    windSpeed,
+    uv,
+    visibility,
+    windDirection,
+    sunRise,
+    sunSet,
+  ) {
     this.location = location;
-    this.currentCondition = currentCondition;
-    this.currentDate = currentDate;
+    this.date = date;
+    this.temp = temp;
     this.feel = feel;
-    this.description = description;
+    this.conditions = conditions;
+    this.rainProbability = rainProbability;
+    this.humidity = humidity;
+    this.windSpeed = windSpeed;
+    this.uv = uv;
+    this.visibility = visibility;
+    this.windDirection = windDirection;
+    this.sunRise = sunRise;
+    this.sunSet = sunSet;
   }
 
   getLocation() {
     return this.location;
   }
 
-  getCurrentCondition() {
-    return this.currentCondition;
-  }
-
   getDate() {
     return this.currentDate;
+  }
+
+  getTemp() {
+    return this.temp;
   }
 
   getFeel() {
     return this.feel;
   }
 
-  getDescription() {
-    return this.description;
+  getCurrentCondition() {
+    return this.currentCondition;
+  }
+
+  getRainProb() {
+    return this.rainProbability;
+  }
+
+  getHumidity() {
+    return this.humidity;
+  }
+
+  getWindSpeed() {
+    return this.windSpeed;
+  }
+
+  getUV() {
+    return this.uvIndex;
+  }
+
+  getVisibility() {
+    return this.visibility;
+  }
+
+  getWindDirection() {
+    return this.windDirection;
+  }
+
+  getSunrise() {
+    return this.sunRise;
+  }
+
+  getSunset() {
+    return this.sunSet;
   }
 }
 
