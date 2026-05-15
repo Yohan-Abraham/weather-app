@@ -20,10 +20,18 @@ async function processData(location) {
   const data = await getData(location);
   const weather = new Weather(
     data.address,
-    data.currentConditions.icon,
     data.days[0].datetime,
+    data.currentConditions.temp,
     data.currentConditions.feelslike,
-    data.description,
+    data.currentConditions.conditions,
+    data.currentConditions.precipprob,
+    data.currentConditions.humidity,
+    data.currentConditions.windspeed,
+    data.currentConditions.uvindex,
+    data.currentConditions.visibility,
+    data.currentConditions.winddir,
+    data.currentConditions.sunrise,
+    data.currentConditions.sunset,
   );
   console.log(data);
   return weather;
