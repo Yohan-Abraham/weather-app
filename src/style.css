@@ -87,8 +87,10 @@ input {
 }
 
 #currentTemp span {
-  font-weight: lighter;
-  font-size: large;
+  font-weight: normal;
+  font-size: 2rem;
+  position: relative;
+  top: -2.5rem;
 }
 
 #feelContainer {
@@ -104,6 +106,8 @@ input {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  gap: 1.5em;
+  margin: 1em 0;
 }
 #weatherContainer > #additionalInfo {
   background: transparent;
@@ -111,8 +115,6 @@ input {
 
 #additionalInfo > div {
   background: linear-gradient(180deg, rgb(46, 136, 192), #2e8bbafc 100%);
-  margin: 0.3em 0.5em;
-  margin-bottom: 1em;
   border-radius: 20px;
 }
 
