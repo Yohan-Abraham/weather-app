@@ -20,7 +20,8 @@ async function processData(location) {
   const data = await getData(location);
   const weather = new Weather(
     data.address,
-    data.currentConditions.conditions,
+    data.currentConditions.icon,
+    data.days[0].datetime,
     data.currentConditions.feelslike,
     data.description,
   );
