@@ -64,9 +64,6 @@ function weatherContainer() {
   const currentDate = document.createElement('div');
   currentDate.id = 'currentDate';
   currentData.appendChild(currentDate);
-  const currentTemp = document.createElement('div');
-  currentTemp.id = 'currentTemp';
-  currentData.appendChild(currentTemp);
   const currentFeel = document.createElement('div');
   currentFeel.id = 'currentFeel';
   currentData.appendChild(currentFeel);
@@ -83,13 +80,25 @@ function weatherContainer() {
   weatherContainer.appendChild(moreDetails);
 }
 
-function setDate() {}
+//sets todays date
+function setDate(date) {
+  const currentDate = document.querySelector('#currentDate');
+  currentDate.textContent = `${date}`;
+}
 
+//sets future weather information for the day
 function setDescription(weather) {
   const description = document.querySelector('#weatherDescription');
   description.textContent = `${weather}`;
 }
 
+//sets current temperature
+function setFeel(feel) {
+  const currentFeel = document.querySelector('#currentFeel');
+  currentFeel.textContent = `${feel} ˚C`;
+}
+
+//sets weather icon
 function setIcon() {
   const icon = document.querySelector('#icon');
   icon.style.backgroundImage = `url(${sunny})`;
@@ -99,7 +108,7 @@ function setIcon() {
 function setBackground(currentCondition) {
   const body = document.querySelector('body');
   if (
-    currentCondition.toLowerCase() == 'partially cloudy' ||
+    currentCondition.toLowerCase() == 'cloudy' ||
     currentCondition.toLowerCase() == 'overcast'
   ) {
     const body = document.querySelector('body');
@@ -112,4 +121,11 @@ function initializeDom() {
   weatherContainer();
 }
 
-export { initializeDom, setBackground, setIcon, setDescription };
+export {
+  initializeDom,
+  setBackground,
+  setIcon,
+  setDescription,
+  setDate,
+  setFeel,
+};
