@@ -1,14 +1,4 @@
-import {
-  initializeDom,
-  setBackground,
-  setIcon,
-  setDescription,
-  setDate,
-  setFeel,
-  setWindSpeed,
-  setHumidity,
-  setUV,
-} from './dom';
+import { initializeDom } from './dom';
 import { processData } from './data';
 import { Weather } from './weather';
 
