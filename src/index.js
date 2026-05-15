@@ -1,4 +1,4 @@
-import { initializeDom, changeBackground } from './dom';
+import { initializeDom, setBackground, setIcon, setDescription } from './dom';
 import { processData } from './data';
 import { Weather } from './weather';
 
@@ -11,7 +11,9 @@ function setupEventListeners() {
     if (e.key === 'Enter') {
       const data = await processData(getLocation.value);
       getLocation.value = '';
-      changeBackground(data.getCurrentCondition());
+      setBackground(data.getCurrentCondition());
+      setIcon();
+      setDescription(data.getDescription());
       console.log(data);
     }
   });
