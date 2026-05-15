@@ -5,6 +5,9 @@ import {
   setDescription,
   setDate,
   setFeel,
+  setWindSpeed,
+  setHumidity,
+  setUV,
 } from './dom';
 import { processData } from './data';
 import { Weather } from './weather';
@@ -18,11 +21,6 @@ function setupEventListeners() {
     if (e.key === 'Enter') {
       const data = await processData(getLocation.value);
       getLocation.value = '';
-      setBackground(data.getCurrentCondition());
-      setIcon();
-      setDescription(data.getDescription());
-      setDate(data.getDate());
-      setFeel(data.getFeel());
       console.log(data);
     }
   });
