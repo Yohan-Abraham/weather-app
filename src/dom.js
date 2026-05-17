@@ -1,3 +1,47 @@
+function setTemp(element, temp) {
+  element.textContent = `${temp}˚C`;
+}
+
+function setFeel(element, feel) {
+  element.textContent = `Feels like ${feel}˚C`;
+}
+
+function setDescription(element, description) {
+  element.textContent = `${description}`;
+}
+
+function setRainProb(element, prob) {
+  element.textContent = `${prob}%`;
+}
+
+function setHumidity(element, humidity) {
+  element.textContent = `${humidity}`;
+}
+
+function setWindSpeed(element, speed) {
+  element.textContent = `${speed}`;
+}
+
+function setUv(element, uv) {
+  element.textContent = `${uv}`;
+}
+
+function setVisibility(element, visibility) {
+  element.textContent = `${visibility}`;
+}
+
+function setWindDirection(element, direction) {
+  element.textContent = `${direction}`;
+}
+
+function setRiseTime(element, time) {
+  element.textContent = `${time}`;
+}
+
+function setSetTime(element, time) {
+  element.textContent = `${time}`;
+}
+
 function createNavBar() {
   return `<nav>
       <div id="appName">Weather App</div>
@@ -24,7 +68,7 @@ function currentWeather() {
           <p>Current Weather</p>
           <p id="currentDay">Friday</p>
         </div>
-        <div id="currentTemp">13<span>˚C</span></div>
+        <div id="currentTemp"></div>
         <div id="speedUnit">
           <select name="speed" id="speed">
             <option value="miles">Miles</option>
@@ -76,10 +120,23 @@ function additionalInformation() {
       </div>`;
 }
 
+function sunInfo() {
+  return `<div id="sunInfoContainer">
+        <div id="currentDate">May 16, 2026</div>
+        <div id="sun-rise">Sun Rise</div>
+        <div id="sun-set">Sun Set</div>
+        <div id="rise-img"></div>
+        <div id="set-img"></div>
+        <div id="rise-time">7am</div>
+        <div id="set-time">8pm</div>
+      </div>`;
+}
+
 function weatherContainer() {
   return `<div id="weatherContainer">
   ${currentWeather()}
   ${additionalInformation()}
+  ${sunInfo()}
   </div>`;
 }
 
@@ -89,4 +146,17 @@ function initializeDom() {
   ${weatherContainer()}`;
 }
 
-export { initializeDom };
+export {
+  initializeDom,
+  setTemp,
+  setFeel,
+  setDescription,
+  setRainProb,
+  setHumidity,
+  setWindSpeed,
+  setUv,
+  setVisibility,
+  setWindDirection,
+  setRiseTime,
+  setSetTime,
+};
