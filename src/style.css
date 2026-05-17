@@ -63,7 +63,7 @@ input {
 }
 
 #currentWeather {
-  padding: 0.5em;
+  padding: 1em;
   grid-column: 1;
   grid-row: 1;
   background-color: beige;
@@ -84,6 +84,16 @@ input {
   justify-self: center;
   font-weight: bolder;
   font-size: 6rem;
+}
+
+#speedUnit {
+  grid-column: 3;
+  justify-self: flex-end;
+}
+
+select {
+  background-color: transparent;
+  border: none;
 }
 
 #currentTemp span {
@@ -116,9 +126,18 @@ input {
 #additionalInfo > div {
   background: linear-gradient(180deg, rgb(46, 136, 192), #2e8bbafc 100%);
   border-radius: 20px;
+  padding: 0.2em;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 #sunInfoContainer {
   grid-row: 3;
   grid-column: 1;
+}
+
+#forcasted-weather {
+  grid-column: 2;
+  grid-row: 1/-1;
 }
