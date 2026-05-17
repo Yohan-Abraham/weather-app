@@ -34,7 +34,7 @@ class Weather {
   }
 
   getDate() {
-    return this.currentDate;
+    return this.date;
   }
 
   getTemp() {
