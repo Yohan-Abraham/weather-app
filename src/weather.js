@@ -46,7 +46,7 @@ class Weather {
   }
 
   getCurrentCondition() {
-    return this.currentCondition;
+    return this.conditions;
   }
 
   getRainProb() {
@@ -62,7 +62,7 @@ class Weather {
   }
 
   getUV() {
-    return this.uvIndex;
+    return this.uv;
   }
 
   getVisibility() {
