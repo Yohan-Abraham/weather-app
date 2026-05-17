@@ -1,21 +1,6 @@
-import {
-  initializeDom,
-  setTemp,
-  setFeel,
-  setDescription,
-  setRainProb,
-  setHumidity,
-  setWindSpeed,
-  setUv,
-  setVisibility,
-  setWindDirection,
-  setRiseTime,
-  setSetTime,
-} from './dom';
+import { initializeDom, renderUIData } from './dom';
 import { processData } from './data';
 import { Weather } from './weather';
-
-initializeDom();
 
 function getElements() {
   const set = {
@@ -41,21 +26,14 @@ function setupEventListeners() {
     if (e.key === 'Enter') {
       const data = await processData(getLocation.value);
       getLocation.value = '';
-      setTemp(getElements().currentTemp, data.getTemp());
-      setFeel(getElements().currentFeel, data.getFeel());
-      setDescription(
-        getElements().currentDescription,
-        data.getCurrentCondition(),
-      );
-      setRainProb(getElements().rainProb, data.getRainProb());
-      setHumidity(getElements().humidity, data.getHumidity());
-      setWindSpeed(getElements().windSpeed, data.getWindSpeed());
-      setUv(getElements().uv, data.getUV());
-      setVisibility(getElements().visibility, data.getVisibility());
-      setWindDirection(getElements().windDir, data.getWindDirection());
-      setRiseTime(getElements().sunRiseTime, data.getSunrise());
-      setSetTime(getElements().sunSetTime, data.getSunset());
+      renderUIData(data);
     }
   });
 }
-setupEventListeners();
+
+function initializeApp() {
+  initializeDom();
+  setupEventListeners();
+}
+
+initializeApp();
