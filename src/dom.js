@@ -1,45 +1,22 @@
-function setTemp(element, temp) {
-  element.textContent = `${temp}˚C`;
-}
-
-function setFeel(element, feel) {
-  element.textContent = `Feels like ${feel}˚C`;
-}
-
-function setDescription(element, description) {
-  element.textContent = `${description}`;
-}
-
-function setRainProb(element, prob) {
-  element.textContent = `${prob}%`;
-}
-
-function setHumidity(element, humidity) {
-  element.textContent = `${humidity}`;
-}
-
-function setWindSpeed(element, speed) {
-  element.textContent = `${speed}`;
-}
-
-function setUv(element, uv) {
-  element.textContent = `${uv}`;
-}
-
-function setVisibility(element, visibility) {
-  element.textContent = `${visibility}`;
-}
-
-function setWindDirection(element, direction) {
-  element.textContent = `${direction}`;
-}
-
-function setRiseTime(element, time) {
-  element.textContent = `${time}`;
-}
-
-function setSetTime(element, time) {
-  element.textContent = `${time}`;
+function renderUIData(weather) {
+  document.querySelector('#currentTemp').textContent = `${weather.temp}˚C`;
+  document.querySelector('#currentFeel').textContent =
+    `Feels like ${weather.feel}˚C`;
+  document.querySelector('#currentDescription').textContent =
+    `${weather.conditions}`;
+  document.querySelector('#rain-prob').textContent =
+    `${weather.rainProbability}`;
+  document.querySelector('#currentHumidity').textContent =
+    `${weather.humidity}`;
+  document.querySelector('#currentWindSpeed').textContent =
+    `${weather.windSpeed}`;
+  document.querySelector('#currentUv').textContent = `${weather.uv}`;
+  document.querySelector('#currentVisibility').textContent =
+    `${weather.visibility}`;
+  document.querySelector('#currentWindDirection').textContent =
+    `${weather.windDirection}`;
+  document.querySelector('#rise-time').textContent = `${weather.sunRise}`;
+  document.querySelector('#set-time').textContent = `${weather.sunSet}`;
 }
 
 function createNavBar() {
@@ -78,8 +55,8 @@ function currentWeather() {
         <div id="feelContainer">
           <span id="icon"></span>
           <span
-            ><p id="currentFeel">Feels like</p>
-            <p id="currentDescription">Coludy</p></span
+            ><p id="currentFeel"></p>
+            <p id="currentDescription"></p></span
           >
         </div>
       </div>`;
@@ -122,13 +99,13 @@ function additionalInformation() {
 
 function sunInfo() {
   return `<div id="sunInfoContainer">
-        <div id="currentDate">May 16, 2026</div>
+        <div id="currentDate"></div>
         <div id="sun-rise">Sun Rise</div>
         <div id="sun-set">Sun Set</div>
         <div id="rise-img"></div>
         <div id="set-img"></div>
-        <div id="rise-time">7am</div>
-        <div id="set-time">8pm</div>
+        <div id="rise-time"></div>
+        <div id="set-time"></div>
       </div>`;
 }
 
@@ -146,17 +123,4 @@ function initializeDom() {
   ${weatherContainer()}`;
 }
 
-export {
-  initializeDom,
-  setTemp,
-  setFeel,
-  setDescription,
-  setRainProb,
-  setHumidity,
-  setWindSpeed,
-  setUv,
-  setVisibility,
-  setWindDirection,
-  setRiseTime,
-  setSetTime,
-};
+export { initializeDom, renderUIData };
