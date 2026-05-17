@@ -28,58 +28,6 @@ class Weather {
     this.sunRise = sunRise;
     this.sunSet = sunSet;
   }
-
-  getLocation() {
-    return this.location;
-  }
-
-  getDate() {
-    return this.date;
-  }
-
-  getTemp() {
-    return this.temp;
-  }
-
-  getFeel() {
-    return this.feel;
-  }
-
-  getCurrentCondition() {
-    return this.conditions;
-  }
-
-  getRainProb() {
-    return this.rainProbability;
-  }
-
-  getHumidity() {
-    return this.humidity;
-  }
-
-  getWindSpeed() {
-    return this.windSpeed;
-  }
-
-  getUV() {
-    return this.uv;
-  }
-
-  getVisibility() {
-    return this.visibility;
-  }
-
-  getWindDirection() {
-    return this.windDirection;
-  }
-
-  getSunrise() {
-    return this.sunRise;
-  }
-
-  getSunset() {
-    return this.sunSet;
-  }
 }
 
 export { Weather };
