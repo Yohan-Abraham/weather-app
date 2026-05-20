@@ -1,5 +1,5 @@
 import './style.css';
-import { Weather } from './weather';
+import { Weather, forcastedWeather } from './weather';
 
 //returns raw data of location
 async function getData(location) {
@@ -12,6 +12,22 @@ async function getData(location) {
   } catch {
     console.log('error');
   }
+}
+
+async function getForcastedWeather(location) {
+  const sevenDayForcast = [];
+  const data = await getData(location);
+  for (let i = 0; i < 7; i++) {
+    const weather = new forcastedWeather(
+      data.days[i].datetime,
+      data.days[i].conditions,
+      data.days[i].temp,
+      data.days[i].windspeed,
+      data.days[i].humidity,
+    );
+    sevenDayForcast.push(weather);
+  }
+  return sevenDayForcast;
 }
 
 //processes data for desired location and returns important data
@@ -37,4 +53,4 @@ async function processData(location) {
   return weather;
 }
 
-export { processData };
+export { processData, getForcastedWeather };
