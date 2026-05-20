@@ -30,4 +30,14 @@ class Weather {
   }
 }
 
-export { Weather };
+class forcastedWeather {
+  constructor(day, conditions, temp, wind, humidity) {
+    this.day = day;
+    this.conditions = conditions;
+    this.temp = temp;
+    this.wind = wind;
+    this.humidity = humidity;
+  }
+}
+
+export { Weather, forcastedWeather };
