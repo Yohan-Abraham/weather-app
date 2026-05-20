@@ -171,4 +171,59 @@ select {
 #forcasted-weather {
   grid-column: 2;
   grid-row: 1/-1;
+  display: grid;
+  grid-template-rows: 0.3fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 1em;
+}
+
+.forcast-container {
+  display: flex;
+}
+
+.left {
+  width: 49%;
+  display: flex;
+  align-items: center;
+}
+
+.day-icon {
+  width: 30%;
+}
+
+.day-data {
+  width: 70%;
+  padding: 0.5em;
+}
+
+.divider {
+  font-size: 5rem;
+  align-self: center;
+}
+
+.right {
+  width: 49%;
+  display: flex;
+}
+
+.day-temp {
+  width: 30%;
+  font-size: 2.2rem;
+  font-weight: 500;
+  align-self: center;
+  padding-left: 1em;
+}
+
+.additionalContainer {
+  width: 70%;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-wind {
+  height: 50%;
+}
+
+.day-humidity {
+  height: 50%;
 }
