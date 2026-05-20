@@ -14,7 +14,7 @@ body {
 
 nav {
   display: grid;
-  grid-template-columns: 0.3fr 0.5fr 1fr 0.7fr;
+  grid-template-columns: 0.3fr 0.2fr 0.4fr 1fr 0.7fr;
   align-items: center;
   margin: 2em 7em;
   padding: 1.3em 1em;
@@ -23,6 +23,32 @@ nav {
   font-weight: bold;
   border: 1px solid black;
   border-radius: 20px;
+}
+
+#location-img,
+#rain-icon,
+#humidity-icon,
+#wind-icon,
+#uv-icon,
+#visibility-icon,
+#compass-icon {
+  height: 100%;
+  width: 50%;
+  justify-self: end;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding-right: 0.5em;
+}
+
+#rise-img,
+#set-img {
+  height: 100%;
+  width: 50%;
+  justify-self: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 #searchBox {
