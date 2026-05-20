@@ -1,4 +1,8 @@
 async function renderUIData(weather, forcastedData) {
+  import('../images/location.png').then((locationImg) => {
+    document.querySelector('#location-img').style.backgroundImage =
+      `url(${locationImg.default})`;
+  });
   document.querySelector('.currentLocation').textContent =
     `${weather.location}`;
   document.querySelector(`#currentDay`).textContent = `${weather.date}`;
@@ -7,19 +11,51 @@ async function renderUIData(weather, forcastedData) {
     `Feels like ${weather.feel}˚C`;
   document.querySelector('#currentDescription').textContent =
     `${weather.conditions}`;
+  import('../images/rain.png').then((rain) => {
+    document.querySelector('#rain-icon').style.backgroundImage =
+      `url(${rain.default})`;
+  });
   document.querySelector('#rain-prob').textContent =
     `${weather.rainProbability}%`;
+  import('../images/water.png').then((humidity) => {
+    document.querySelector('#humidity-icon').style.backgroundImage =
+      `url(${humidity.default})`;
+  });
   document.querySelector('#currentHumidity').textContent =
     `${weather.humidity}`;
+  import('../images/wind.png').then((wind) => {
+    document.querySelector('#wind-icon').style.backgroundImage =
+      `url(${wind.default})`;
+  });
   document.querySelector('#currentWindSpeed').textContent =
     `${weather.windSpeed}`;
+  import('../images/uv.png').then((uv) => {
+    document.querySelector('#uv-icon').style.backgroundImage =
+      `url(${uv.default})`;
+  });
   document.querySelector('#currentUv').textContent = `${weather.uv}`;
+  import('../images/visibility.png').then((visibility) => {
+    document.querySelector('#visibility-icon').style.backgroundImage =
+      `url(${visibility.default})`;
+  });
   document.querySelector('#currentVisibility').textContent =
     `${weather.visibility}`;
+  import('../images/direction.png').then((direction) => {
+    document.querySelector('#compass-icon').style.backgroundImage =
+      `url(${direction.default})`;
+  });
   document.querySelector('#currentWindDirection').textContent =
     `${weather.windDirection}`;
   document.querySelector('#rise-time').textContent = `${weather.sunRise}`;
+  import('../images/sunrise.png').then((sunrise) => {
+    document.querySelector('#rise-img').style.backgroundImage =
+      `url(${sunrise.default})`;
+  });
   document.querySelector('#set-time').textContent = `${weather.sunSet}`;
+  import('../images/sunset.png').then((sunset) => {
+    document.querySelector('#set-img').style.backgroundImage =
+      `url(${sunset.default})`;
+  });
 
   for (let i = 0; i < 7; i++) {
     document.querySelector(`#day${i}`).textContent = `${forcastedData[i].day}`;
@@ -37,6 +73,7 @@ async function renderUIData(weather, forcastedData) {
 function createNavBar() {
   return `<nav>
       <div id="appName">Weather App</div>
+      <div id="location-img"></div>
       <div class="currentLocation"></div>
       <div id="searchBox">
         <input
