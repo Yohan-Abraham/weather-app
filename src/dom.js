@@ -1,11 +1,14 @@
-function renderUIData(weather) {
+async function renderUIData(weather, forcastedData) {
+  document.querySelector('.currentLocation').textContent =
+    `${weather.location}`;
+  document.querySelector(`#currentDay`).textContent = `${weather.date}`;
   document.querySelector('#currentTemp').textContent = `${weather.temp}˚C`;
   document.querySelector('#currentFeel').textContent =
     `Feels like ${weather.feel}˚C`;
   document.querySelector('#currentDescription').textContent =
     `${weather.conditions}`;
   document.querySelector('#rain-prob').textContent =
-    `${weather.rainProbability}`;
+    `${weather.rainProbability}%`;
   document.querySelector('#currentHumidity').textContent =
     `${weather.humidity}`;
   document.querySelector('#currentWindSpeed').textContent =
@@ -17,6 +20,18 @@ function renderUIData(weather) {
     `${weather.windDirection}`;
   document.querySelector('#rise-time').textContent = `${weather.sunRise}`;
   document.querySelector('#set-time').textContent = `${weather.sunSet}`;
+
+  for (let i = 0; i < 7; i++) {
+    document.querySelector(`#day${i}`).textContent = `${forcastedData[i].day}`;
+    document.querySelector(`#condition${i}`).textContent =
+      `${forcastedData[i].conditions}`;
+    document.querySelector(`#day${i}-temp`).textContent =
+      `${forcastedData[i].temp}`;
+    document.querySelector(`#wind${i}`).textContent =
+      `Wind Speed: ${forcastedData[i].wind}`;
+    document.querySelector(`#humidity${i}`).textContent =
+      `Humidity: ${forcastedData[i].humidity}`;
+  }
 }
 
 function createNavBar() {
@@ -43,7 +58,7 @@ function currentWeather() {
   return `<div id="currentWeather">
         <div id="currentHeader">
           <p>Current Weather</p>
-          <p id="currentDay">Friday</p>
+          <p id="currentDay"></p>
         </div>
         <div id="currentTemp"></div>
         <div id="speedUnit">
@@ -109,11 +124,44 @@ function sunInfo() {
       </div>`;
 }
 
+function dayForcast(i) {
+  return `<div class="forcast-container">
+          <div class="left">
+            <div class="day-icon" id="day${i}-icon"></div>
+            <div class="day-data" id="day${i}-data">
+              <div id="day${i}"></div>
+              <div id="condition${i}"></div>
+            </div>
+          </div>
+          <div class="divider">|</div>
+          <div class="right">
+            <div class="day-temp" id="day${i}-temp"></div>
+            <div class="additionalContainer">
+              <div class="day-wind" id="wind${i}">Wind:</div>
+              <div class="day-humidity" id="humidity${i}">Humidity:</div>
+            </div>
+          </div>
+        </div>`;
+}
+
+function sevenDayForcast() {
+  let dayHtml = '';
+  for (let i = 0; i < 7; i++) {
+    dayHtml += dayForcast(i);
+  }
+
+  return `<div id="forcasted-weather">
+  <div>7 Day Forcast</div>
+  ${dayHtml}
+  </div>`;
+}
+
 function weatherContainer() {
   return `<div id="weatherContainer">
   ${currentWeather()}
   ${additionalInformation()}
   ${sunInfo()}
+  ${sevenDayForcast()}
   </div>`;
 }
 
