@@ -68,6 +68,48 @@ async function renderUIData(weather, forcastedData) {
     document.querySelector(`#humidity${i}`).textContent =
       `Humidity: ${forcastedData[i].humidity}`;
   }
+
+  for (let i = 0; i < 7; i++) {
+    if (
+      document.querySelector(`#condition${i}`).textContent.toLowerCase() ==
+      `partially cloudy`
+    ) {
+      import('../images/cloudy.png').then((cloudy) => {
+        document.querySelector(`#day${i}-icon`).style.backgroundImage =
+          `url(${cloudy.default})`;
+      });
+    }
+
+    if (
+      document.querySelector(`#condition${i}`).textContent.toLowerCase() ==
+      `rain`
+    ) {
+      import('../images/rain.png').then((rain) => {
+        document.querySelector(`#day${i}-icon`).style.backgroundImage =
+          `url(${rain.default})`;
+      });
+    }
+
+    if (
+      document.querySelector(`#condition${i}`).textContent.toLowerCase() ==
+      `rain, partially cloudy`
+    ) {
+      import('../images/rain.png').then((rain) => {
+        document.querySelector(`#day${i}-icon`).style.backgroundImage =
+          `url(${rain.default})`;
+      });
+    }
+
+    if (
+      document.querySelector(`#condition${i}`).textContent.toLowerCase() ==
+      `clear`
+    ) {
+      import('../images/uv.png').then((sun) => {
+        document.querySelector(`#day${i}-icon`).style.backgroundImage =
+          `url(${sun.default})`;
+      });
+    }
+  }
 }
 
 function createNavBar() {
