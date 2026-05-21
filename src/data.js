@@ -39,7 +39,7 @@ async function processData(location) {
     data.days[0].datetime,
     data.currentConditions.temp,
     data.currentConditions.feelslike,
-    data.currentConditions.conditions,
+    data.currentConditions.icon,
     data.currentConditions.precipprob,
     data.currentConditions.humidity,
     data.currentConditions.windspeed,
