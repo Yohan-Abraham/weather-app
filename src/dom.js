@@ -32,6 +32,34 @@ function formatDate(dateString) {
   });
 }
 
+function formatWindDirection(degrees) {
+  const directions = [
+    'North',
+    'North-East',
+    'East',
+    'South-East',
+    'South',
+    'South-West',
+    'West',
+    'North-West',
+  ];
+
+  const index = Math.round(degrees / 45) % 8;
+
+  return `${degrees}° ${directions[index]}`;
+}
+
+function formatTime(timeString) {
+  const [hours, minutes] = timeString.split(':');
+  const date = new Date();
+  date.setHours(hours, minutes);
+
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+  });
+}
+
 async function renderUIData(weather, forcastedData) {
   savedWeather = weather;
   savedForecast = forcastedData;
@@ -63,7 +91,7 @@ async function renderUIData(weather, forcastedData) {
       `url(${humidity.default})`;
   });
   document.querySelector('#currentHumidity').textContent =
-    `${weather.humidity}`;
+    `${weather.humidity}%`;
   import('../images/wind.png').then((wind) => {
     document.querySelector('#wind-icon').style.backgroundImage =
       `url(${wind.default})`;
@@ -78,19 +106,21 @@ async function renderUIData(weather, forcastedData) {
       `url(${visibility.default})`;
   });
   document.querySelector('#currentVisibility').textContent =
-    `${weather.visibility}`;
+    `${weather.visibility} km`;
   import('../images/direction.png').then((direction) => {
     document.querySelector('#compass-icon').style.backgroundImage =
       `url(${direction.default})`;
   });
   document.querySelector('#currentWindDirection').textContent =
-    `${weather.windDirection}`;
-  document.querySelector('#rise-time').textContent = `${weather.sunRise}`;
+    `${formatWindDirection(weather.windDirection)}`;
+  document.querySelector('#rise-time').textContent =
+    `${formatTime(weather.sunRise)}`;
   import('../images/sunrise.png').then((sunrise) => {
     document.querySelector('#rise-img').style.backgroundImage =
       `url(${sunrise.default})`;
   });
-  document.querySelector('#set-time').textContent = `${weather.sunSet}`;
+  document.querySelector('#set-time').textContent =
+    `${formatTime(weather.sunSet)}`;
   import('../images/sunset.png').then((sunset) => {
     document.querySelector('#set-img').style.backgroundImage =
       `url(${sunset.default})`;
@@ -108,7 +138,7 @@ async function renderUIData(weather, forcastedData) {
     document.querySelector(`#wind${i}`).textContent =
       `Wind Speed: ${formatSpeed(forcastedData[i].wind)}`;
     document.querySelector(`#humidity${i}`).textContent =
-      `Humidity: ${forcastedData[i].humidity}`;
+      `Humidity: ${forcastedData[i].humidity}%`;
   }
 
   for (let i = 0; i < 7; i++) {
