@@ -17,7 +17,7 @@ async function getData(location) {
 async function getForcastedWeather(location) {
   const sevenDayForcast = [];
   const data = await getData(location);
-  for (let i = 0; i < 7; i++) {
+  for (let i = 1; i <= 7; i++) {
     const weather = new forcastedWeather(
       data.days[i].datetime,
       data.days[i].conditions,
