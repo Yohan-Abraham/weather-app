@@ -1,16 +1,57 @@
+let savedWeather = null;
+let savedForecast = null;
+let tempUnit = 'C';
+let speedUnit = 'kmh';
+
+function celsiusToFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
+}
+
+function kmhToMph(kmh) {
+  return kmh / 1.609;
+}
+
+function formatTemp(temp) {
+  const value = tempUnit === 'F' ? celsiusToFahrenheit(temp) : temp;
+  return `${Math.round(value)}˚${tempUnit}`;
+}
+
+function formatSpeed(speed) {
+  const value = speedUnit === 'mph' ? kmhToMph(speed) : speed;
+  const unit = speedUnit === 'mph' ? 'mph' : 'km/h';
+  return `${Math.round(value)} ${unit}`;
+}
+
+function formatDate(dateString) {
+  const date = new Date(`${dateString}T00:00:00`);
+
+  return date.toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
 async function renderUIData(weather, forcastedData) {
+  savedWeather = weather;
+  savedForecast = forcastedData;
   import('../images/location.png').then((locationImg) => {
     document.querySelector('#location-img').style.backgroundImage =
       `url(${locationImg.default})`;
   });
   document.querySelector('.currentLocation').textContent =
     `${weather.location}`;
-  document.querySelector(`#currentDay`).textContent = `${weather.date}`;
-  document.querySelector('#currentTemp').textContent = `${weather.temp}˚C`;
+  document.querySelector(`#currentDay`).textContent =
+    `${formatDate(weather.date)}`;
+  document.querySelector('#currentTemp').textContent = formatTemp(weather.temp);
   document.querySelector('#currentFeel').textContent =
-    `Feels like ${weather.feel}˚C`;
+    `Feels like ${formatTemp(weather.feel)}`;
+  document.querySelector('#currentWindSpeed').textContent = formatSpeed(
+    weather.windSpeed,
+  );
   document.querySelector('#currentDescription').textContent =
     `${weather.conditions}`;
+
   import('../images/rain.png').then((rain) => {
     document.querySelector('#rain-icon').style.backgroundImage =
       `url(${rain.default})`;
@@ -27,8 +68,6 @@ async function renderUIData(weather, forcastedData) {
     document.querySelector('#wind-icon').style.backgroundImage =
       `url(${wind.default})`;
   });
-  document.querySelector('#currentWindSpeed').textContent =
-    `${weather.windSpeed}`;
   import('../images/uv.png').then((uv) => {
     document.querySelector('#uv-icon').style.backgroundImage =
       `url(${uv.default})`;
@@ -58,13 +97,16 @@ async function renderUIData(weather, forcastedData) {
   });
 
   for (let i = 0; i < 7; i++) {
-    document.querySelector(`#day${i}`).textContent = `${forcastedData[i].day}`;
+    document.querySelector(`#day${i}`).textContent = formatDate(
+      forcastedData[i].day,
+    );
     document.querySelector(`#condition${i}`).textContent =
       `${forcastedData[i].conditions}`;
-    document.querySelector(`#day${i}-temp`).textContent =
-      `${forcastedData[i].temp}`;
+    document.querySelector(`#day${i}-temp`).textContent = formatTemp(
+      forcastedData[i].temp,
+    );
     document.querySelector(`#wind${i}`).textContent =
-      `Wind Speed: ${forcastedData[i].wind}`;
+      `Wind Speed: ${formatSpeed(forcastedData[i].wind)}`;
     document.querySelector(`#humidity${i}`).textContent =
       `Humidity: ${forcastedData[i].humidity}`;
   }
@@ -126,9 +168,9 @@ function createNavBar() {
         />
       </div>
       <div id="unit">
-        <button class="unitBtn">˚C</button>
-        <span>|</span>
-        <button class="unitBtn">˚F</button>
+      <button class="unitBtn temp-unit active" data-unit="C">˚C</button>
+|
+<button class="unitBtn temp-unit" data-unit="F">˚F</button>
       </div>
     </nav>`;
 }
@@ -141,11 +183,11 @@ function currentWeather() {
         </div>
         <div id="currentTemp"></div>
         <div id="speedUnit">
-          <select name="speed" id="speed">
-            <option value="miles">Miles</option>
-            <option value="kilometers">Km</option>
-          </select>
-        </div>
+      <select name="speed" id="speed">
+        <option value="mph">Miles</option>
+        <option value="kmh" selected>Km</option>
+      </select>
+    </div>
         <div id="feelContainer">
           <span id="icon"></span>
           <span
@@ -244,10 +286,31 @@ function weatherContainer() {
   </div>`;
 }
 
+function setupUnitButtons() {
+  document.querySelectorAll('.temp-unit').forEach((button) => {
+    button.addEventListener('click', () => {
+      tempUnit = button.dataset.unit;
+
+      if (savedWeather && savedForecast) {
+        renderUIData(savedWeather, savedForecast);
+      }
+    });
+  });
+
+  document.querySelector('#speed').addEventListener('change', (e) => {
+    speedUnit = e.target.value;
+
+    if (savedWeather && savedForecast) {
+      renderUIData(savedWeather, savedForecast);
+    }
+  });
+}
+
 function initializeDom() {
   const body = document.querySelector('body');
   body.innerHTML = `${createNavBar()}
   ${weatherContainer()}`;
+  setupUnitButtons();
 }
 
 export { initializeDom, renderUIData };
